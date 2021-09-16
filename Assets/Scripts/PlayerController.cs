@@ -81,7 +81,9 @@ public class PlayerController : MonoBehaviour {
 
     public void AddKey() {
         keys++;
-        keyText.text = $"Keys: {keys}";
+        
+        if(keyText != null)
+            keyText.text = $"Keys: {keys}";
     }
 
     public int KeyCount() => keys;
