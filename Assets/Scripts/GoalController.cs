@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class GoalController : MonoBehaviour
 {
     public PlayerController player;
-    public int keys;
+    public int keysRequired;
+    public string nextScene;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +22,19 @@ public class GoalController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.name == player.name) {
-            if(player.KeyCount() >= keys) {
-                SceneManager.LoadScene("WinScene"); //, LoadSceneMode.Additive);
+            if(player.KeyCount() >= keysRequired) {
+                NextScene();
             }
+        }
+    }
+
+    private void NextScene() {
+        if(!string.IsNullOrEmpty(nextScene))
+        {
+            SceneManager.LoadScene(nextScene);
+        } else {
+            // Try to load the "next" scene
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

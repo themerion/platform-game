@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
     public float speed;
@@ -84,4 +85,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     public int KeyCount() => keys;
+
+    public void Kill() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }   
