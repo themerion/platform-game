@@ -2,18 +2,16 @@
 
 public class OncePlatform : MonoBehaviour
 {
-    public PlayerController Player; // Used by child: Player Check
+    private PlayerController _player; // Used by child: Player Check
     Platform_PlayerCheck _playerCheck;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(Player == null) {
-            Debug.Log(nameof(OncePlatform) + " " + nameof(Player) + " is not set!");
-        }
+        _player = Game.GetPlayer();
         
         _playerCheck = this.gameObject.transform.GetChild(0).GetComponent<Platform_PlayerCheck>();
-        _playerCheck.Setup(Player);
+        _playerCheck.Setup(_player);
         _playerCheck.OnLeave(PlayerExit);
     }
 

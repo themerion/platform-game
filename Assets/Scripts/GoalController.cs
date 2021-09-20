@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GoalController : MonoBehaviour
 {
-    public PlayerController player;
+    private PlayerController _player;
     public int keysRequired;
     public string nextScene;
 
     // Start is called before the first frame update
     void Start()
     {
+        _player = Game.GetPlayer();
     }
 
     // Update is called once per frame
@@ -21,8 +22,8 @@ public class GoalController : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.name == player.name) {
-            if(player.KeyCount() >= keysRequired) {
+        if (col.gameObject.name == _player.name) {
+            if(_player.KeyCount() >= keysRequired) {
                 NextScene();
             }
         }

@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class KillBlockController : MonoBehaviour
 {
-    public PlayerController player;
+    private PlayerController _player;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _player = Game.GetPlayer();
     }
 
     // Update is called once per frame
@@ -17,8 +17,8 @@ public class KillBlockController : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        if (col.gameObject.name == player.name) {
-            player.Kill();
+        if (col.gameObject.name == _player.name) {
+            _player.Kill();
         }
     }
 }

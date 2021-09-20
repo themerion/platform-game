@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimedPlatform : MonoBehaviour
 {
-    public PlayerController Player; // Used by child: Player Check
+    private PlayerController _player; // Used by child: Player Check
     public float duration = 0.75f;
     Platform_PlayerCheck _playerCheck;
     double playerLandedTime;
@@ -13,12 +13,10 @@ public class TimedPlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(Player == null) {
-            Debug.Log(nameof(TimedPlatform) + " " + nameof(Player) + " is not set!");
-        }
+        _player = Game.GetPlayer();
 
         _playerCheck = this.gameObject.transform.GetChild(0).GetComponent<Platform_PlayerCheck>();
-        _playerCheck.Setup(Player);
+        _playerCheck.Setup(_player);
         _playerCheck.OnEnter(WhenPlayerLands);
     }
 
